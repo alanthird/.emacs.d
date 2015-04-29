@@ -30,6 +30,7 @@
 		  (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))
 				    nil t)))
 (global-set-key [(f5)] 'magit-status)
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 (server-start)
 ; make 'c-x k' kill server buffers rather than 'c-x #'
@@ -195,6 +196,7 @@ insert a link to this file."
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
@@ -250,7 +252,11 @@ insert a link to this file."
 	     ;; spell checker
 	     (add-to-list 'exec-path "C:/Program Files/Aspell/bin/")
 	     (setq ispell-program-name "aspell")
-	     (require 'ispell)))
+	     (require 'ispell))
+	    ((string-equal system-type "darwin")
+	     (setq default-directory (concat (getenv "HOME") "/"))
+	     (setq ns-right-alternate-modifier (quote none)) ;; use right alt for # and €
+	     (setq ispell-program-name "aspell")))
 
 ; System specific stuff!
 (cond ((equal system-name "CSS-27317-TL")
@@ -267,4 +273,8 @@ insert a link to this file."
 	     '(("http"     . "localhost:3128")
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
+      ((string-prefix-p "galloway" system-name)
+       (setq org-agenda-files '("/Volumes/shared/home/alan/org"))
+       (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin:/Users/alan/.local/bin"))
+       (setq exec-path (append exec-path '("/usr/local/bin" "/Users/alan/.local/bin"))))
       (t (setq org-agenda-files '("/shared/home/alan/org"))))
