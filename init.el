@@ -142,10 +142,6 @@ insert a link to this file."
   (indent-region (point-min) (point-max) nil)
   (message "Ah, much better!"))
 
-; Lua mode
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
-(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 (setq c-default-style "k&r"
   c-basic-offset 2)
