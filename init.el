@@ -68,80 +68,23 @@
 
 (setq password-cache-expiry nil)
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-(load "powershell-mode")
+(defun my-load-all-in-directory (dir)
+  "`load' all elisp libraries in directory DIR which are not already loaded."
+  (interactive "D")
+  (let ((libraries-loaded (mapcar #'file-name-sans-extension
+                                  (delq nil (mapcar #'car load-history)))))
+    (dolist (file (directory-files dir t ".+\\.elc?$"))
+      (let ((library (file-name-sans-extension file)))
+        (unless (member library libraries-loaded)
+          (load library nil t)
+          (push library libraries-loaded))))))
+
+(my-load-all-in-directory "~/.emacs.d/lisp/")
 
 (setq auto-mode-alist (cons '("\\.tr$" . nroff-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.ps1$" . powershell-mode) auto-mode-alist))
 
 (global-set-key (kbd "C-=") 'er/expand-region)
-
-; org mode stuff
-(require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-(setq org-enforce-todo-dependencies t)
-(setq org-agenda-dim-blocked-tasks t)
-(setq org-agenda-ndays 7)
-(setq org-deadline-warning-days 14)
-(setq org-agenda-skip-deadline-if-done t)
-(setq org-agenda-skip-scheduled-if-done t)
-(setq org-agenda-start-on-weekday nil)
-(setq org-startup-with-inline-images t)
-(setq org-export-with-sub-superscripts '{})
-
-(setq org-todo-keywords
-      '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
-
-(setq org-todo-keyword-faces
-      '(("WAITING" . (:foreground "yellowgreen" :weight bold))
-	("CANCELED" . (:foreground "blue" :weight bold))))
-
-(setq org-agenda-custom-commands
-      '(("q" "Agenda and Todos"
-	 ((agenda "")
-	  (todo "TODO")))
-	("w" todo "WAITING")
-	("W" todo-tree "WAITING")))
-
-(defun my-org-paste-image ()
-  "Take an image from the clipboard into a time stamped
-unique-named file in the same directory as the org-buffer and
-insert a link to this file."
-  (interactive)
-  (setq filename
-        (concat
-         (make-temp-name
-          (concat (buffer-file-name)
-                  "_"
-                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
-  (call-process "convert" nil nil nil "clipboard:" filename)
-  (insert (concat "[[file:" filename "]]"))
-  (org-display-inline-images))
-
-(add-hook 'org-mode-hook (progn
-			   (lambda ()
-			     (local-set-key "\C-ci" (lambda ()
-						      (interactive)
-						      (my-org-paste-image)))
-			     (add-to-list 'org-modules 'org-habit)
-			     (require 'org-habit))))
-
-
-; end of org configuration
-
-(defun pretty-print-xml ()
-  "Pretty format XML markup. You need to have nxml-mode http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do this. The function inserts linebreaks to separate tags that have nothing but whitespace between them. It then indents the markup by using nxml's indentation rules. A variant of the code found at http://blog.bookworm.at/2007/03/pretty-print-xml-with-emacs.html"
-  (interactive)
-  (nxml-mode)
-  (goto-char (point-min))
-  (while (search-forward-regexp "\>[ \\t]*\<" nil t)
-    (backward-char) (insert "\n"))
-  (indent-region (point-min) (point-max) nil)
-  (message "Ah, much better!"))
-
 
 (setq c-default-style "k&r"
   c-basic-offset 2)
@@ -165,7 +108,7 @@ insert a link to this file."
 (typopunct-change-language 'english t)
 
 ;; Wide-margin mode
-(load "wide-margins")
+;;(load "wide-margins")
 
 (add-hook 'wide-margins-mode-hook 
 	  (lambda ()
@@ -211,17 +154,6 @@ insert a link to this file."
 	    (ibuffer-switch-to-saved-filter-groups "default")))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;; Set character encoding to default to UTF-8 rather than Latin-1.
-(setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
-(set-language-environment 'utf-8)
-(setq locale-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(unless (eq system-type 'windows-nt)
-  (set-selection-coding-system 'utf-8))
-(prefer-coding-system 'utf-8)
-
 
 (setq user-full-name "Alan J Third")
 (setq user-mail-address "alan@idiocy.org")
