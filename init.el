@@ -1,7 +1,6 @@
 (setq custom-file "~/.emacs.d/lisp/custom.el")
 
 (setq mouse-wheel-follow-mouse 't)
-(setq mouse-wheel-scroll-amount '(5 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 
 (setq inhibit-startup-screen +1)
