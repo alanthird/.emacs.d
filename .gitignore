@@ -3,3 +3,5 @@ eshell
 server
 tramp
 elpa/archives
+elpa/gnupg
+url

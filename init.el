@@ -89,7 +89,7 @@
 (setq c-default-style "k&r"
   c-basic-offset 2)
 (setq js-indent-level 2)
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 (setq initial-scratch-message "")
 
@@ -99,27 +99,22 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; I seem to need to initialise package.el here so I can load
-;; typopunct below
+;; other things below
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-;; typopunct
-(require 'typopunct)
-(typopunct-change-language 'english t)
-
 ;; Wide-margin mode
-;;(load "wide-margins")
-
 (add-hook 'wide-margins-mode-hook 
 	  (lambda ()
 	    (if (not wide-margins-mode)
 		(progn
 		  (visual-line-mode -1)
 		  (variable-pitch-mode -1)
-		  (typopunct-mode))
+		  (unicycle-mode))
+              (text-mode)
 	      (visual-line-mode t)
 	      (variable-pitch-mode t)
-	      (typopunct-mode))))
+	      (unicycle-mode))))
 
 ;; jump-char
 (require 'jump-char)
