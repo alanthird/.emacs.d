@@ -1,21 +1,16 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(canlock-password "a2379396fb503ac51495f2f05bf4f59dd6104503")
- '(column-number-mode t)
- '(inhibit-startup-screen t)
- '(make-backup-files nil)
- '(mouse-wheel-progressive-speed nil)
- '(org-export-backends (quote (ascii html icalendar md odt groff)))
- '(quack-programs (quote ("biwas" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "racket" "racket -il typed/racket" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq custom-file "~/.emacs.d/lisp/custom.el")
+
+(when (window-system)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
+
+(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-scroll-amount '(5 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+
+(setq inhibit-startup-screen +1)
+(setq make-backup-files nil)
+(setq column-number-mode t)
 
 ;; Function key bindings
 (global-set-key [(f1)] (lambda ()

@@ -4,4 +4,5 @@ server
 tramp
 elpa/archives
 elpa/gnupg
+lisp/custom.el
 url
