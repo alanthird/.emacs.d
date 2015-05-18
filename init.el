@@ -1,9 +1,5 @@
 (setq custom-file "~/.emacs.d/lisp/custom.el")
 
-(when (window-system)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
-
 (setq mouse-wheel-follow-mouse 't)
 (setq mouse-wheel-scroll-amount '(5 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -41,11 +37,12 @@
 (setq show-paren-style 'parenthesis)
 (show-paren-mode +1)
 
-(put 'set-goal-column 'disabled nil)
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
 (put 'narrow-to-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
 (setq save-interprogram-paste-before-kill t)
 (setq sentence-end-double-space nil)
 
