@@ -26,8 +26,10 @@
    'electrify-return-if-match))
 
 (add-hook 'emacs-lisp-mode-hook                  #'my-lisp-setup)
-(add-hook 'eval-expression-minibuffer-setup-hook #'my-lisp-setup)
 (add-hook 'ielm-mode-hook                        #'my-lisp-setup)
 (add-hook 'lisp-mode-hook                        #'my-lisp-setup)
 (add-hook 'lisp-interaction-mode-hook            #'my-lisp-setup)
 (add-hook 'scheme-mode-hook                      #'my-lisp-setup)
+
+(add-hook 'eval-expression-minibuffer-setup-hook
+          (lambda () (paredit-mode t)))
