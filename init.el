@@ -143,7 +143,9 @@
 
 (setq user-full-name "Alan J Third")
 (setq user-mail-address "alan@idiocy.org")
+
 (setq ispell-dictionary "british")
+(setq ispell-program-name "hunspell")
 
 ;; Graphical environment only
 (when (display-graphic-p)
@@ -159,20 +161,15 @@
 
 ;; System type stuff
 (cond       ((string-equal system-type "gnu/linux")
-	     (setq ispell-program-name "hunspell")
 	     (setq browse-url-browser-function 'browse-url-generic
 		   browse-url-generic-program "xdg-open"))
-	    ((string-equal system-type "windows-nt")
-	     ;; spell checker
-	     (add-to-list 'exec-path "C:/Program Files/Aspell/bin/")
-	     (setq ispell-program-name "aspell")
-	     (require 'ispell))
+	    ((string-equal system-type "windows-nt"))
 	    ((string-equal system-type "darwin")
 	     (setq default-directory (concat (getenv "HOME") "/"))
-	     (setq ns-right-alternate-modifier (quote none)) ;; use right alt for # and €
-	     (setq ispell-program-name "aspell")))
+             ;; use right alt for # and €
+	     (setq ns-right-alternate-modifier (quote none))))
 
-; System specific stuff!
+                                        ; System specific stuff!
 (cond ((equal system-name "CSS-27317-TL")
        (setq user-mail-address "alan.third@argyll-bute.gov.uk")
        (setq org-agenda-files '("H:/org"))
