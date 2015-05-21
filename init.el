@@ -144,6 +144,9 @@
 (setq user-full-name "Alan J Third")
 (setq user-mail-address "alan@idiocy.org")
 
+(setenv "DICTIONARY" "en_GB")
+;;(setq ispell-dictionary "en_GB")
+
 ;; Graphical environment only
 (when (display-graphic-p)
   (progn
@@ -160,10 +163,7 @@
 (cond       ((string-equal system-type "gnu/linux")
 	     (setq browse-url-browser-function 'browse-url-generic
 		   browse-url-generic-program "xdg-open"))
-	    ((string-equal system-type "windows-nt")
-             ;; emacs on windows NT sets the locale to "ENG" by
-             ;; default, which is wrong
-             (setenv "LANG" "en_GB"))
+	    ((string-equal system-type "windows-nt"))
 	    ((string-equal system-type "darwin")
 	     (setq default-directory (concat (getenv "HOME") "/"))
              ;; use right alt for # and €
@@ -186,6 +186,6 @@
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "galloway" system-name)
        (setq org-agenda-files '("/Volumes/shared/home/alan/org"))
-       (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin:/Users/alan/.local/bin"))
-       (setq exec-path (append exec-path '("/usr/local/bin" "/Users/alan/.local/bin"))))
+       (setenv "PATH" (concat "/usr/local/bin:/Users/alan/.local/bin:" (getenv "PATH")))
+       (setq exec-path (append '("/usr/local/bin" "/Users/alan/.local/bin") exec-path)))
       (t (setq org-agenda-files '("/shared/home/alan/org"))))
