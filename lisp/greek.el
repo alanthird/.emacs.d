@@ -1,5 +1,5 @@
-;; bind all the greek letters with the prefix C-c g. So, for example
-;; C-ga inserts α and C-gOME inserts Ω
+;; Bind all the greek letters with the prefix C-c g. So, for example
+;; C-c ga inserts α and C-c gOME inserts Ω
 
 (defun at/global-bind-alist (prefix alist)
   (mapc
