@@ -14,6 +14,8 @@
 (setq org-startup-with-inline-images t)
 (setq org-export-with-sub-superscripts '{})
 
+(setq org-export-backends '(ascii html md odt))
+
 (setq org-todo-keywords
       '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
 
