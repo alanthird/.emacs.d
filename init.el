@@ -144,7 +144,7 @@
 (setq user-full-name "Alan J Third")
 (setq user-mail-address "alan@idiocy.org")
 
-(setenv "DICTIONARY" "en_GB")
+;;(setenv "DICTIONARY" "en_GB")
 ;;(setq ispell-dictionary "en_GB")
 
 ;; Graphical environment only
@@ -187,5 +187,6 @@
       ((string-prefix-p "galloway" system-name)
        (setq org-agenda-files '("/Volumes/shared/home/alan/org"))
        (setenv "PATH" (concat "/usr/local/bin:/Users/alan/.local/bin:" (getenv "PATH")))
-       (setq exec-path (append '("/usr/local/bin" "/Users/alan/.local/bin") exec-path)))
+       (setq exec-path (append '("/usr/local/bin" "/Users/alan/.local/bin") exec-path))
+       )
       (t (setq org-agenda-files '("/shared/home/alan/org"))))
