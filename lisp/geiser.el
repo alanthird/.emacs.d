@@ -1,1 +1,1 @@
-(setq geiser-active-implementations '(guile chicken racket))
+(setq geiser-active-implementations '(guile racket))
