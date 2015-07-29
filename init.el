@@ -78,8 +78,8 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (setq c-default-style "k&r"
-  c-basic-offset 2)
-(setq js-indent-level 2)
+      c-basic-offset 2)
+(setq default-tab-width 4)
 (setq-default indent-tabs-mode nil)
 
 (setq initial-scratch-message "")
@@ -181,7 +181,8 @@
        (setq tramp-default-method "pscp")
 
        (setq url-proxy-services
-	     '(("http"     . "localhost:3128")
+	     '(("http"     . "abch-tmg02:8080")
+               ;;("http"     . "localhost:3128")
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "galloway" system-name)
