@@ -126,19 +126,6 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 ;; iBuffer configuration
-(setq ibuffer-saved-filter-groups
-      (quote (("default"
-	       ("dired" (mode . dired-mode))
-	       ("org"   (or
-			 (mode . org-mode)
-			 (name . "^\\*Org .*\\*$")))
-	       ;; catchall for emacs buffers
-	       ("emacs" (name . "^\\*.+\\*$"))))))
-
-(add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-switch-to-saved-filter-groups "default")))
-
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (setq user-full-name "Alan J Third")
