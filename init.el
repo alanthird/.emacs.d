@@ -44,6 +44,7 @@
 (put 'set-goal-column 'disabled nil)
 (setq save-interprogram-paste-before-kill t)
 (setq sentence-end-double-space nil)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; wind move
 (when (fboundp 'windmove-default-keybindings)
@@ -164,8 +165,6 @@
 
        (set-frame-height (selected-frame) 60)
        (set-frame-position (selected-frame) 40 30)
-
-       (setq tramp-default-method "pscp")
 
        (setq url-proxy-services
 	     '(("http"     . "abch-tmg02:8080")
