@@ -13,6 +13,7 @@
 (setq org-agenda-start-on-weekday nil)
 (setq org-startup-with-inline-images t)
 (setq org-export-with-sub-superscripts '{})
+(setq org-src-fontify-natively t)
 
 (setq org-export-backends '(ascii html md odt))
 
