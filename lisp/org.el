@@ -17,6 +17,9 @@
 
 (setq org-export-backends '(ascii html md odt))
 
+;; Enable evaluation of javascript blocks
+(require 'ob-js)
+
 (setq org-todo-keywords
       '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
 
