@@ -19,6 +19,7 @@
 
 ;; Enable evaluation of javascript blocks
 (require 'ob-js)
+(add-hook 'org-src-mode-hook (lambda () (setq js-indent-level 2)))
 
 (setq org-todo-keywords
       '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
