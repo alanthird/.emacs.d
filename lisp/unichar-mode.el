@@ -80,32 +80,32 @@
   '(?\")
   "List of extra quote characters.")
 
-(defun unichar-insert-char (c)
+(defun unichar--insert-char (c)
   "Insert C and print out it's Unicode name."
   (insert c)
   (message (get-char-code-property c 'name)))
 
-(defun unichar-insert-from-list (char-list)
+(defun unichar--insert-from-list (char-list)
   "Insert the next unicode glyph from CHAR-LIST."
   (let ((cur-char (member (char-before) char-list)))
-    (cond ((not cur-char) (unichar-insert-char (car char-list)))
+    (cond ((not cur-char) (unichar--insert-char (car char-list)))
           ((not (cdr cur-char))
            (delete-char -1)
-           (unichar-insert-char (car char-list)))
+           (unichar--insert-char (car char-list)))
           (t (delete-char -1)
-             (unichar-insert-char (cadr cur-char))))))
+             (unichar--insert-char (cadr cur-char))))))
 
 (defun unichar--apostrophe ()
   "Insert apostrophe glyph.
 Apostrophes are defined by UNICHAR-APOSTROPHE-LIST."
   (interactive)
-  (unichar-insert-from-list unichar-apostrophe-list))
+  (unichar--insert-from-list unichar-apostrophe-list))
 
 (defun unichar--hyphen ()
   "Insert hyphen.
 Hyphens are defined by UNICHAR-HYPHEN-LIST."
   (interactive)
-  (unichar-insert-from-list unichar-hyphen-list))
+  (unichar--insert-from-list unichar-hyphen-list))
 
 (defun unichar--quote ()
   "Insert quote glyph.
@@ -115,15 +115,15 @@ previous character is a space or the beginning of a line, insert
 an opening quote, otherwise start with a closing quote."
   (interactive)
   (if (or (bolp) (looking-back "[[:space:]]" 1))
-      (unichar-insert-from-list unichar-opening-quote-list)
-    (unichar-insert-from-list (append unichar-closing-quote-list
-                                      unichar-opening-quote-list
-                                      unichar-other-quote-list))))
+      (unichar--insert-from-list unichar-opening-quote-list)
+    (unichar--insert-from-list (append unichar-closing-quote-list
+                                       unichar-opening-quote-list
+                                       unichar-other-quote-list))))
 
 ;;;###autoload
 (define-minor-mode unichar-mode
   "Insert appropriate unicode characters and let the user cycle through them."
-  :lighter " uq"
+  :lighter " UniChar"
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map (kbd "'") 'unichar--apostrophe)
             (define-key map (kbd "\"") 'unichar--quote)
