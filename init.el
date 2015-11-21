@@ -102,11 +102,11 @@
 		(progn
 		  (visual-line-mode -1)
 		  (variable-pitch-mode -1)
-		  (unicycle-mode))
+		  (unichar-mode))
               (text-mode)
 	      (visual-line-mode t)
 	      (variable-pitch-mode t)
-	      (unicycle-mode))))
+	      (unichar-mode))))
 
 ;; jump-char
 (require 'jump-char)
