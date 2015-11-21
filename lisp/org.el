@@ -1,8 +1,8 @@
-; org mode stuff
-(require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 (setq org-log-done t)
 (setq org-enforce-todo-dependencies t)
 (setq org-agenda-dim-blocked-tasks t)
@@ -17,8 +17,6 @@
 
 (setq org-export-backends '(ascii html md odt))
 
-;; Enable evaluation of javascript blocks
-(require 'ob-js)
 (add-hook 'org-src-mode-hook (lambda () (setq js-indent-level 2)))
 
 (setq org-todo-keywords
@@ -56,4 +54,6 @@ insert a link to this file."
 						      (interactive)
 						      (my-org-paste-image)))
 			     (add-to-list 'org-modules 'org-habit)
-			     (require 'org-habit))))
+			     (require 'org-habit)
+                 ;; Enable evaluation of javascript blocks
+                 (require 'ob-js))))

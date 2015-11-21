@@ -92,8 +92,8 @@
 
 ;; I seem to need to initialise package.el here so I can load
 ;; other things below
-(setq package-enable-at-startup nil)
-(package-initialize)
+;; (setq package-enable-at-startup nil)
+;; (package-initialize)
 
 ;; Wide-margin mode
 (add-hook 'wide-margins-mode-hook 
@@ -108,23 +108,9 @@
 	      (variable-pitch-mode t)
 	      (unichar-mode))))
 
-;; jump-char
-(require 'jump-char)
-(global-set-key [(control z)] 'jump-char-forward)
-(global-set-key [(shift control z)] 'jump-char-backward)
 
-;; web-mode
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; FlyCheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; iBuffer configuration
 (global-set-key (kbd "C-x C-b") 'ibuffer)
