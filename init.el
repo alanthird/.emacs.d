@@ -109,9 +109,6 @@
 	      (unichar-mode))))
 
 
-;; FlyCheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 ;; iBuffer configuration
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
