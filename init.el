@@ -149,6 +149,11 @@
        (set-frame-height (selected-frame) 60)
        (set-frame-position (selected-frame) 40 30)
 
+       ;; Windows native ls.exe from https://u-tools.com/msls
+       (setq ls-lisp-use-insert-directory-program t)
+       (setq insert-directory-program "~/local/bin/ls.exe")
+       (setq dired-use-ls-dired nil) ;; msls seems to produce broken output
+       
        (setq url-proxy-services
 	     '(("http"     . "abch-tmg02:8080")
                ;;("http"     . "localhost:3128")
