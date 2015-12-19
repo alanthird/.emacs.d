@@ -160,9 +160,5 @@
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "galloway" system-name)
-       (setq org-agenda-files '("/Volumes/shared/home/alan/org"))
-       (setenv "GOPATH" "/Users/alan/src/go")
-       (setenv "PATH" (concat "/usr/local/bin:/Users/alan/.local/bin:/Users/alan/src/go/bin:" (getenv "PATH")))
-       (setq exec-path (append '("/usr/local/bin" "/Users/alan/.local/bin"
-                                 "/Users/alan/src/go/bin") exec-path)))
+       (setq org-agenda-files '("/Volumes/shared/home/alan/org")))
       (t (setq org-agenda-files '("/shared/home/alan/org"))))
