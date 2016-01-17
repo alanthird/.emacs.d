@@ -112,7 +112,7 @@
 ;; iBuffer configuration
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(setq user-full-name "Alan J Third")
+(setq user-full-name "Alan Third")
 (setq user-mail-address "alan@idiocy.org")
 
 ;;(setenv "DICTIONARY" "en_GB")
