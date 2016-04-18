@@ -55,5 +55,12 @@ insert a link to this file."
 						      (my-org-paste-image)))
 			     (add-to-list 'org-modules 'org-habit)
 			     (require 'org-habit)
-                 ;; Enable evaluation of javascript blocks
-                 (require 'ob-js))))
+                 ;; Enable evaluation of javascript and dot blocks
+                 ;;
+                 ;; (I believe I'm supposed to use
+                 ;; org-babel-do-load-languages, to set this up, but
+                 ;; it just doesn't seem to work for me.)
+                 (require 'ob-js)
+                 (require 'ob-dot)
+		 
+                 (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot)))))

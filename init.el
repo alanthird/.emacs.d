@@ -87,7 +87,8 @@
 
 ; package.el stuff
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ;; Marmalade appears to be broken.
+                         ;("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; I seem to need to initialise package.el here so I can load
@@ -131,14 +132,15 @@
     (load-theme 'wombat)))
 
 ;; System type stuff
-(cond       ((string-equal system-type "gnu/linux")
-	     (setq browse-url-browser-function 'browse-url-generic
-		   browse-url-generic-program "xdg-open"))
-	    ((string-equal system-type "windows-nt"))
-	    ((string-equal system-type "darwin")
-	     (setq default-directory (concat (getenv "HOME") "/"))
-             ;; use right alt for # and €
-	     (setq ns-right-alternate-modifier (quote none))))
+(cond ((string-equal system-type "gnu/linux")
+       (setq browse-url-browser-function 'browse-url-generic
+             browse-url-generic-program "xdg-open"))
+      ((string-equal system-type "windows-nt")
+       (setenv "SSH_ASKPASS" "git-gui--askpass"))
+      ((string-equal system-type "darwin")
+       (setq default-directory (concat (getenv "HOME") "/"))
+       ;; use right alt for # and €
+       (setq ns-right-alternate-modifier (quote none))))
 
 ;; System specific stuff!
 (cond ((equal system-name "CSS-27317-TL")
@@ -153,7 +155,7 @@
        (setq ls-lisp-use-insert-directory-program t)
        (setq insert-directory-program "~/local/bin/ls.exe")
        (setq dired-use-ls-dired nil) ;; msls seems to produce broken output
-       
+
        (setq url-proxy-services
 	     '(("http"     . "abch-tmg02:8080")
                ;;("http"     . "localhost:3128")
