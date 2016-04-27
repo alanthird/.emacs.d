@@ -6,6 +6,30 @@
 (setq inhibit-startup-screen +1)
 (setq make-backup-files nil)
 (setq column-number-mode t)
+(setq shift-select-mode nil)
+(setq password-cache-expiry nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
+(setq save-interprogram-paste-before-kill t)
+(setq sentence-end-double-space nil)
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; Graphical environment only
+(when (display-graphic-p)
+  (progn
+    (require 'cl-lib)
+    (defun font-candidate (&rest fonts)
+      "Return existing font which first match."
+      (cl-find-if (lambda (f) (find-font (font-spec :name f))) fonts))
+    
+    (set-face-attribute 'default nil :font (font-candidate '"Droid Sans Mono-12" "Lucida Console-12"))
+    (set-face-attribute 'variable-pitch nil :font (font-candidate '"FuturaMed-16" "PT Sans-16" "Sans Serif-16"))
+    (load-theme 'wombat)))
+
 
 ;; package.el stuff
 (package-initialize)
@@ -66,15 +90,6 @@
 	    (when server-buffer-clients
 	      (local-set-key (kbd "C-x k") 'server-edit))))
 
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
-(put 'narrow-to-region 'disabled nil)
-(put 'set-goal-column 'disabled nil)
-(setq save-interprogram-paste-before-kill t)
-(setq sentence-end-double-space nil)
-(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; wind move
 (when (fboundp 'windmove-default-keybindings)
@@ -85,10 +100,6 @@
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-(setq shift-select-mode nil)
-
-
-(setq password-cache-expiry nil)
 
 (defun my-load-all-in-directory (dir)
   "`load' all elisp libraries in directory DIR which are not already loaded."
@@ -132,18 +143,6 @@
 
 ;;(setenv "DICTIONARY" "en_GB")
 ;;(setq ispell-dictionary "en_GB")
-
-;; Graphical environment only
-(when (display-graphic-p)
-  (progn
-    (require 'cl-lib)
-    (defun font-candidate (&rest fonts)
-      "Return existing font which first match."
-      (cl-find-if (lambda (f) (find-font (font-spec :name f))) fonts))
-    
-    (set-face-attribute 'default nil :font (font-candidate '"Droid Sans Mono-12" "Lucida Console-12"))
-    (set-face-attribute 'variable-pitch nil :font (font-candidate '"FuturaMed-16" "PT Sans-16" "Sans Serif-16"))
-    (load-theme 'wombat)))
 
 ;; System type stuff
 (cond ((string-equal system-type "gnu/linux")

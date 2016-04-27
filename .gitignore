@@ -2,8 +2,8 @@ auto-save-list
 eshell
 server
 tramp
-elpa/archives
-elpa/gnupg
+elpa/
 lisp/custom.el
 url
 .org-id-locations
+*.elc
