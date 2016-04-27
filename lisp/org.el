@@ -1,66 +1,74 @@
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-iswitchb)
+(use-package abc-mode)
 
-(setq org-log-done t)
-(setq org-enforce-todo-dependencies t)
-(setq org-agenda-dim-blocked-tasks t)
-(setq org-agenda-ndays 7)
-(setq org-deadline-warning-days 14)
-(setq org-agenda-skip-deadline-if-done t)
-(setq org-agenda-skip-scheduled-if-done t)
-(setq org-agenda-start-on-weekday nil)
-(setq org-startup-with-inline-images t)
-(setq org-export-with-sub-superscripts '{})
-(setq org-src-fontify-natively t)
+(use-package org
+  :bind (;; ([f1] . (lambda ()
+	 ;; 	   (interactive) 
+	 ;; 	   (org-agenda "" "q")
+	 ;; 	   (delete-other-windows)))
+         ("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c b" . org-iswitchb))
 
-(setq org-export-backends '(ascii html md odt))
+  :init
+  (setq org-log-done t)
+  (setq org-enforce-todo-dependencies t)
+  (setq org-agenda-dim-blocked-tasks t)
+  (setq org-agenda-ndays 7)
+  (setq org-deadline-warning-days 14)
+  (setq org-agenda-skip-deadline-if-done t)
+  (setq org-agenda-skip-scheduled-if-done t)
+  (setq org-agenda-start-on-weekday nil)
+  (setq org-startup-with-inline-images t)
+  (setq org-export-with-sub-superscripts '{})
+  (setq org-src-fontify-natively t)
 
-(add-hook 'org-src-mode-hook (lambda () (setq js-indent-level 2)))
+  (setq org-export-backends '(ascii html md odt))
 
-(setq org-todo-keywords
-      '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
+  (add-hook 'org-src-mode-hook (lambda () (setq js-indent-level 2)))
 
-(setq org-todo-keyword-faces
-      '(("WAITING" . (:foreground "yellowgreen" :weight bold))
-	("CANCELED" . (:foreground "blue" :weight bold))))
+  (setq org-todo-keywords
+        '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
 
-(setq org-agenda-custom-commands
-      '(("q" "Agenda and Todos"
-	 ((agenda "")
-	  (todo "TODO")))
-	("w" todo "WAITING")
-	("W" todo-tree "WAITING")))
+  (setq org-todo-keyword-faces
+        '(("WAITING" . (:foreground "yellowgreen" :weight bold))
+          ("CANCELED" . (:foreground "blue" :weight bold))))
 
-(defun my-org-paste-image ()
-  "Take an image from the clipboard into a time stamped
+  (setq org-agenda-custom-commands
+        '(("q" "Agenda and Todos"
+           ((agenda "")
+            (todo "TODO")))
+          ("w" todo "WAITING")
+          ("W" todo-tree "WAITING")))
+
+  (defun my-org-paste-image ()
+    "Take an image from the clipboard into a time stamped
 unique-named file in the same directory as the org-buffer and
 insert a link to this file."
-  (interactive)
-  (setq filename
-        (concat
-         (make-temp-name
-          (concat (buffer-file-name)
-                  "_"
-                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
-  (call-process "convert" nil nil nil "clipboard:" filename)
-  (insert (concat "[[file:" filename "]]"))
-  (org-display-inline-images))
+    (interactive)
+    (setq filename
+          (concat
+           (make-temp-name
+            (concat (buffer-file-name)
+                    "_"
+                    (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
+    (call-process "convert" nil nil nil "clipboard:" filename)
+    (insert (concat "[[file:" filename "]]"))
+    (org-display-inline-images))
 
-(add-hook 'org-mode-hook (progn
-			   (lambda ()
-			     (local-set-key "\C-ci" (lambda ()
-						      (interactive)
-						      (my-org-paste-image)))
-			     (add-to-list 'org-modules 'org-habit)
-			     (require 'org-habit)
-                 ;; Enable evaluation of javascript and dot blocks
-                 ;;
-                 ;; (I believe I'm supposed to use
-                 ;; org-babel-do-load-languages, to set this up, but
-                 ;; it just doesn't seem to work for me.)
-                 (require 'ob-js)
-                 (require 'ob-dot)
-		 
-                 (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot)))))
+  (add-hook 'org-mode-hook (progn
+                             (lambda ()
+                               (local-set-key "\C-ci" (lambda ()
+                                                        (interactive)
+                                                        (my-org-paste-image)))
+                               (add-to-list 'org-modules 'org-habit)
+                               (require 'org-habit)
+                               ;; Enable evaluation of javascript and dot blocks
+                               ;;
+                               ;; (I believe I'm supposed to use
+                               ;; org-babel-do-load-languages, to set this up, but
+                               ;; it just doesn't seem to work for me.)
+                               (require 'ob-js)
+                               (require 'ob-dot)
+                               
+                               (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))))))

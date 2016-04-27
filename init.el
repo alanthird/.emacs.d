@@ -7,20 +7,55 @@
 (setq make-backup-files nil)
 (setq column-number-mode t)
 
-;; Function key bindings
-(global-set-key [(f1)] (lambda ()
-			 (interactive) 
-			 (org-agenda "" "q")
-			 (delete-other-windows)))
+;; package.el stuff
+(package-initialize)
+(setq package-enable-at-startup nil)
 
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ;; Marmalade appears to be broken.
+                         ;("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(setq use-package-verbose t)
+(setq use-package-always-ensure t)
+(require 'use-package)
+(use-package auto-compile
+             :config (auto-compile-on-load-mode))
+(setq load-prefer-newer t)
+
+;; Function key bindings
 ;; (global-set-key [(f12)] 'mode-line-other-buffer)
 (global-set-key [(f12)]
 		(lambda ()
 		  (interactive)
 		  (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))
 				    nil t)))
-(global-set-key [(f5)] 'magit-status)
-(setq magit-last-seen-setup-instructions "1.4.0")
+
+(use-package magit
+  :ensure t
+  :init
+  (setq magit-last-seen-setup-instructions "1.4.0")
+  :bind ([f5] . magit-status))
+
+(use-package paren
+  :init
+  (setq show-paren-style 'parenthesis)
+  :config
+  (show-paren-mode +1))
+
+(use-package rainbow-mode
+  :ensure t)
+
+(use-package csv-mode
+  :ensure t)
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+
 
 (server-start)
 ; make 'c-x k' kill server buffers rather than 'c-x #'
@@ -31,11 +66,6 @@
 	    (when server-buffer-clients
 	      (local-set-key (kbd "C-x k") 'server-edit))))
 
-; turn on parenthesis matching
-(require 'paren)
-(setq show-paren-style 'parenthesis)
-(show-paren-mode +1)
-
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -44,7 +74,7 @@
 (put 'set-goal-column 'disabled nil)
 (setq save-interprogram-paste-before-kill t)
 (setq sentence-end-double-space nil)
-(defalias 'yes-or-no-p 'y-or-n-p)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; wind move
 (when (fboundp 'windmove-default-keybindings)
@@ -76,25 +106,9 @@
 (setq auto-mode-alist (cons '("\\.tr$" . nroff-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.ps1$" . powershell-mode) auto-mode-alist))
 
-(global-set-key (kbd "C-=") 'er/expand-region)
-
 (setq c-default-style "k&r"
       c-basic-offset 2)
-(setq default-tab-width 4)
 (setq-default indent-tabs-mode nil)
-
-(setq initial-scratch-message "")
-
-; package.el stuff
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ;; Marmalade appears to be broken.
-                         ;("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
-;; I seem to need to initialise package.el here so I can load
-;; other things below
-;; (setq package-enable-at-startup nil)
-;; (package-initialize)
 
 ;; Wide-margin mode
 (add-hook 'wide-margins-mode-hook 

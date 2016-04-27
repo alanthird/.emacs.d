@@ -1,4 +1,7 @@
 ;; paredit & eldoc
+(use-package paredit
+  :ensure t)
+
 (defvar electrify-return-match
   "[\]}\)\"]"
   "If this regexp matches the text after the cursor, do an \"electric\"

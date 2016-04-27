@@ -1,4 +1,4 @@
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-(with-eval-after-load 'flycheck
+(use-package flycheck
+  :init
+  (global-flycheck-mode)
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))

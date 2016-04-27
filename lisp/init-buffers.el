@@ -1,3 +1,4 @@
+(setq initial-scratch-message "")
 (setq initial-major-mode 'text-mode)
 
 (add-hook 'emacs-startup-hook
