@@ -80,6 +80,7 @@
   :ensure t
   :bind ("C-=" . er/expand-region))
 
+(use-package debbugs)
 
 (server-start)
 ; make 'c-x k' kill server buffers rather than 'c-x #'
