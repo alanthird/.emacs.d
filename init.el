@@ -1,5 +1,21 @@
 (setq custom-file "~/.emacs.d/lisp/custom.el")
 
+;; package.el stuff
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ;; Marmalade appears to be broken.
+                         ;("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(setq use-package-verbose t)
+(require 'use-package)
+(setq load-prefer-newer t)
+
 (setq mouse-wheel-follow-mouse 't)
 (setq mouse-wheel-progressive-speed nil)
 
@@ -31,25 +47,6 @@
     (load-theme 'wombat)))
 
 
-;; package.el stuff
-(package-initialize)
-(setq package-enable-at-startup nil)
-
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ;; Marmalade appears to be broken.
-                         ;("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(setq use-package-verbose t)
-(setq use-package-always-ensure t)
-(require 'use-package)
-(use-package auto-compile
-             :config (auto-compile-on-load-mode))
-(setq load-prefer-newer t)
-
 ;; Function key bindings
 ;; (global-set-key [(f12)] 'mode-line-other-buffer)
 (global-set-key [(f12)]
@@ -71,16 +68,19 @@
   (show-paren-mode +1))
 
 (use-package rainbow-mode
+  :defer t
   :ensure t)
 
 (use-package csv-mode
+  :mode "\\.csv\\'"
   :ensure t)
 
 (use-package expand-region
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-(use-package debbugs)
+(use-package debbugs
+  :defer t)
 
 (server-start)
 ; make 'c-x k' kill server buffers rather than 'c-x #'

@@ -10,7 +10,7 @@
          ("C-c c" . org-capture)
          ("C-c b" . org-iswitchb))
 
-  :init
+  :config
   (setq org-log-done t)
   (setq org-enforce-todo-dependencies t)
   (setq org-agenda-dim-blocked-tasks t)
