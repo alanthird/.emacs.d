@@ -1,5 +1,5 @@
 (use-package go-mode
-  :init
-  (go-eldoc-setup))
+  :config
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
 
 (use-package go-eldoc)
