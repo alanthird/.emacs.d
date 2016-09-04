@@ -1,5 +1,9 @@
 (use-package abc-mode)
 
+(use-package gnuplot
+  :defer t)
+(use-package org-babel-gnuplot)
+
 (use-package org
   :bind (;; ([f1] . (lambda ()
 	 ;; 	   (interactive) 
@@ -70,5 +74,7 @@ insert a link to this file."
                                ;; it just doesn't seem to work for me.)
                                (require 'ob-js)
                                (require 'ob-dot)
+                               (require 'ob-gnuplot)
                                
-                               (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))))))
+                               (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
+                               (add-to-list 'org-src-lang-modes '("html" . web))))))
