@@ -4,7 +4,7 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ;; Marmalade appears to be broken.
                          ;("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")))
 (setq package-enable-at-startup nil)
 (package-initialize)
 
@@ -30,21 +30,25 @@
 (setq sentence-end-double-space nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(load-theme 'wombat)
 
-;; Graphical environment only
-(when (display-graphic-p)
-  (progn
-    (require 'cl-lib)
-    (defun font-candidate (&rest fonts)
-      "Return existing font which first match."
-      (cl-find-if (lambda (f) (find-font (font-spec :name f))) fonts))
-    
-    (set-face-attribute 'default nil :font (font-candidate '"Droid Sans Mono-12" "Lucida Console-12"))
-    (set-face-attribute 'variable-pitch nil :font (font-candidate '"FuturaMed-16" "PT Sans-16" "Sans Serif-16"))
-    (load-theme 'wombat)))
+;; Setup each frame when it's created according to how it's displayed.
+(defun my--setup-frame (&rest frame)
+  (if (display-graphic-p)
+      ;; Graphical environment only
+      (progn
+        (require 'cl-lib)
+        (defun font-candidate (&rest fonts)
+          "Return existing font which first match."
+          (cl-find-if (lambda (f) (find-font (font-spec :name f))) fonts))
+        
+        (set-face-attribute 'default nil :font (font-candidate '"Droid Sans Mono-12" "Lucida Console-12"))
+        (set-face-attribute 'variable-pitch nil :font (font-candidate '"FuturaMed-16" "PT Sans-16" "Sans Serif-16")))
+    ;; Terminal only
+    (menu-bar-mode -1)))
+(add-hook 'after-make-frame-functions 'my--setup-frame t)
 
 
 ;; Function key bindings
@@ -122,6 +126,11 @@
       c-basic-offset 2)
 (setq-default indent-tabs-mode nil)
 
+(add-hook 'post-mode-hook
+          (lambda ()
+            (flyspell-mode t)
+            (unichar-mode t)))
+
 ;; Wide-margin mode
 (add-hook 'wide-margins-mode-hook 
 	  (lambda ()
@@ -176,5 +185,5 @@
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "galloway" system-name)
-       (setq org-agenda-files '("/Volumes/shared/home/alan/org")))
+       (setq org-agenda-files '("~/org")))
       (t (setq org-agenda-files '("/shared/home/alan/org"))))
