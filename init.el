@@ -166,7 +166,7 @@
        (setq ns-right-alternate-modifier (quote none))))
 
 ;; System specific stuff!
-(cond ((equal system-name "CSS-27317-TL")
+(cond ((equal (system-name) "CSS-27317-TL")
        (setq user-mail-address "alan.third@argyll-bute.gov.uk")
        (setq org-agenda-files '("H:/org"))
        (set-face-attribute 'default nil :font "Droid Sans Mono-10")
@@ -184,6 +184,6 @@
                ;;("http"     . "localhost:3128")
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
-      ((string-prefix-p "galloway" system-name)
+      ((string-prefix-p "breton" (system-name))
        (setq org-agenda-files '("~/org")))
       (t (setq org-agenda-files '("/shared/home/alan/org"))))
