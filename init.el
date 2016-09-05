@@ -36,14 +36,18 @@
 
 ;; Setup each frame when it's created according to how it's displayed.
 (defun my--setup-frame (&rest frame)
-  (if (display-graphic-p)
-      ;; Graphical environment only
-      (progn
-        ;; nothing here, actually...
-        )
-    ;; Terminal only
-    (menu-bar-mode -1)))
+  (cond
+   ((and (not (string-equal system-type "darwin")) (display-graphic-p))
+    ;; Non-macOS graphical environment
+    (menu-bar-mode -1))
+   ((not (display-graphic-p))
+    ;; Terminal mode
+    (menu-bar-mode -1))))
 (add-hook 'after-make-frame-functions 'my--setup-frame t)
+
+;; We have to run this manually as it doesn't run for the original
+;; frame.
+(my--setup-frame)
 
 
 ;; Function key bindings
