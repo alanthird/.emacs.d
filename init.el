@@ -45,7 +45,7 @@
           (cl-find-if (lambda (f) (find-font (font-spec :name f))) fonts))
         
         (set-face-attribute 'default nil :font (font-candidate '"Droid Sans Mono-12" "Lucida Console-12"))
-        (set-face-attribute 'variable-pitch nil :font (font-candidate '"FuturaMed-16" "PT Sans-16" "Sans Serif-16")))
+        (set-face-attribute 'variable-pitch nil :font (font-candidate '"GaramondNo8-12" "PT Sans-16" "Sans Serif-16")))
     ;; Terminal only
     (menu-bar-mode -1)))
 (add-hook 'after-make-frame-functions 'my--setup-frame t)
@@ -85,6 +85,8 @@
 
 (use-package debbugs
   :defer t)
+
+(add-to-list 'auto-mode-alist '("\\.vcl\\'" . c-mode))
 
 (server-start)
 ; make 'c-x k' kill server buffers rather than 'c-x #'
@@ -166,10 +168,10 @@
        (setq ns-right-alternate-modifier (quote none))))
 
 ;; System specific stuff!
-(cond ((equal (system-name) "CSS-27317-TL")
+(cond ((equal (system-name) "CSS-49268-TL")
        (setq user-mail-address "alan.third@argyll-bute.gov.uk")
        (setq org-agenda-files '("H:/org"))
-       (set-face-attribute 'default nil :font "Droid Sans Mono-10")
+       ;;(set-face-attribute 'default nil :font "Droid Sans Mono-10")
 
        (set-frame-height (selected-frame) 60)
        (set-frame-position (selected-frame) 40 30)
