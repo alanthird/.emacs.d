@@ -39,13 +39,8 @@
   (if (display-graphic-p)
       ;; Graphical environment only
       (progn
-        (require 'cl-lib)
-        (defun font-candidate (&rest fonts)
-          "Return existing font which first match."
-          (cl-find-if (lambda (f) (find-font (font-spec :name f))) fonts))
-        
-        (set-face-attribute 'default nil :font (font-candidate '"Droid Sans Mono-12" "Lucida Console-12"))
-        (set-face-attribute 'variable-pitch nil :font (font-candidate '"GaramondNo8-12" "PT Sans-16" "Sans Serif-16")))
+        ;; nothing here, actually...
+        )
     ;; Terminal only
     (menu-bar-mode -1)))
 (add-hook 'after-make-frame-functions 'my--setup-frame t)
