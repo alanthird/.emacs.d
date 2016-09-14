@@ -2,9 +2,8 @@
 
 ;; package.el stuff
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ;; Marmalade appears to be broken.
-                         ;("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+                         ;;("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 (setq package-enable-at-startup nil)
 (package-initialize)
 
@@ -181,8 +180,10 @@
        (setq dired-use-ls-dired nil) ;; msls seems to produce broken output
 
        (setq url-proxy-services
-	     '(("http"     . "abch-tmg02:8080")
-               ;;("http"     . "localhost:3128")
+	     '(;; ("http"     . "abch-tmg02:8080")
+               ;; ("https"    . "abch-tmg02:8080")
+               ("http"     . "localhost:3128")
+               ("https"    . "localhost:3128")
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "breton" (system-name))
