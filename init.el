@@ -84,6 +84,9 @@
 (use-package debbugs
   :defer t)
 
+(use-package iedit
+  :ensure t)
+
 (add-to-list 'auto-mode-alist '("\\.vcl\\'" . c-mode))
 
 (server-start)
