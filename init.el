@@ -162,7 +162,11 @@
        (setq browse-url-browser-function 'browse-url-generic
              browse-url-generic-program "xdg-open"))
       ((string-equal system-type "windows-nt")
-       (setenv "SSH_ASKPASS" "git-gui--askpass"))
+       (setenv "GIT_ASKPASS" "git-gui--askpass")
+       ;; NOTE: you probably also want to run:
+       ;; git config --global credential.helper wincred
+       ;; on a new install.
+       )
       ((string-equal system-type "darwin")
        (setq default-directory (concat (getenv "HOME") "/"))
        ;; use right alt for # and €
