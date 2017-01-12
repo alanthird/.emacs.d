@@ -187,10 +187,8 @@
        (setq dired-use-ls-dired nil) ;; msls seems to produce broken output
 
        (setq url-proxy-services
-	     '(;; ("http"     . "abch-tmg02:8080")
-               ;; ("https"    . "abch-tmg02:8080")
-               ("http"     . "localhost:3128")
-               ("https"    . "localhost:3128")
+	     '(("http"     . "abc-websense.argyll-bute.gov.uk:8080")
+               ("https"    . "abc-websense.argyll-bute.gov.uk:8080")
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "breton" (system-name))
