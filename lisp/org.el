@@ -75,6 +75,7 @@ insert a link to this file."
                                (require 'ob-js)
                                (require 'ob-dot)
                                (require 'ob-gnuplot)
+                               (require 'ob-scheme)
                                
                                (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
                                (add-to-list 'org-src-lang-modes '("html" . web))))))
