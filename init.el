@@ -96,6 +96,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.vcl\\'" . c-mode))
 
+;; Use cperl-mode instead of the default perl-mode
+(defalias 'perl-mode 'cperl-mode)
+
 (server-start)
 ; make 'c-x k' kill server buffers rather than 'c-x #'
 (add-hook 'server-switch-hook
