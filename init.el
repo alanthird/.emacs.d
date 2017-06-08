@@ -90,6 +90,10 @@
 (use-package iedit
   :ensure t)
 
+(use-package markdown-mode
+  :init
+  (setq markdown-command "pandoc --from markdown_github -t html5 --highlight-style pygments --standalone"))
+
 (add-to-list 'auto-mode-alist '("\\.vcl\\'" . c-mode))
 
 (server-start)
