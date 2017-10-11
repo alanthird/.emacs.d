@@ -23,3 +23,19 @@ http://blog.bookworm.at/2007/03/pretty-print-xml-with-emacs.html"
 
 (advice-add 'toggle-frame-maximized
             :before (lambda () (set-frame-parameter nil 'undecorated t)))
+
+(defun at/start-putty ()
+  "Start a PuTTY session.
+If the current buffer is a remote file, try to re-use the
+connection details."
+  (interactive)
+  (let ((connection-string
+         (if (file-remote-p default-directory)
+             (string-join (list (file-remote-p default-directory 'user)
+                                "@"
+                                (file-remote-p default-directory 'host)))
+           "")))
+    (start-process (string-join (list "PuTTY(" connection-string ")"))
+                   nil "putty" connection-string)))
+
+(global-set-key [(f6)] 'at/start-putty)
