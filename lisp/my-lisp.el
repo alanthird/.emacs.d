@@ -38,4 +38,4 @@ connection details."
     (start-process (string-join (list "PuTTY(" connection-string ")"))
                    nil "putty" connection-string)))
 
-(global-set-key [(f6)] 'at/start-putty)
+(global-set-key (kbd "C-c p") 'at/start-putty)
