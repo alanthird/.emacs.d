@@ -186,12 +186,6 @@
 (cond ((equal (system-name) "CSS-49268-TL")
        (setq user-mail-address "alan.third@argyll-bute.gov.uk")
        (setq org-agenda-files '("H:/org"))
-       ;;(set-face-attribute 'default nil :font "Droid Sans Mono-10")
-
-       ;; Windows native ls.exe from https://u-tools.com/msls
-       (setq ls-lisp-use-insert-directory-program t)
-       (setq insert-directory-program "~/local/bin/ls.exe")
-       (setq dired-use-ls-dired nil) ;; msls seems to produce broken output
 
        (setq url-proxy-services
 	     '(("http"     . "localhost:3128")
