@@ -2,7 +2,6 @@
 
 (use-package gnuplot
   :defer t)
-(use-package org-babel-gnuplot)
 
 (use-package org
   :bind (;; ([f1] . (lambda ()

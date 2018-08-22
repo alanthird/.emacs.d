@@ -94,7 +94,14 @@
 (use-package iedit
   :ensure t)
 
+(use-package markdown-mode
+  :init
+  (setq markdown-command "pandoc --from markdown_github -t html5 --highlight-style pygments --standalone"))
+
 (add-to-list 'auto-mode-alist '("\\.vcl\\'" . c-mode))
+
+;; Use cperl-mode instead of the default perl-mode
+(defalias 'perl-mode 'cperl-mode)
 
 (server-start)
 ; make 'c-x k' kill server buffers rather than 'c-x #'
@@ -186,16 +193,10 @@
 (cond ((equal (system-name) "CSS-49268-TL")
        (setq user-mail-address "alan.third@argyll-bute.gov.uk")
        (setq org-agenda-files '("H:/org"))
-       ;;(set-face-attribute 'default nil :font "Droid Sans Mono-10")
-
-       ;; Windows native ls.exe from https://u-tools.com/msls
-       (setq ls-lisp-use-insert-directory-program t)
-       (setq insert-directory-program "~/local/bin/ls.exe")
-       (setq dired-use-ls-dired nil) ;; msls seems to produce broken output
 
        (setq url-proxy-services
-	     '(("http"     . "abc-websense.argyll-bute.gov.uk:8080")
-               ("https"    . "abc-websense.argyll-bute.gov.uk:8080")
+	     '(("http"     . "localhost:3128")
+               ("https"    . "localhost:3128")
 	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "breton" (system-name))
