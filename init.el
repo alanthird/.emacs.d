@@ -60,6 +60,10 @@
 		  (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))
 				    nil t)))
 
+;; Unbind cmd-Q because it's bound to quit on macOS and I keep hitting
+;; it by accident.
+(global-unset-key (kbd "s-q"))
+
 (use-package magit
   :ensure t
   :init
@@ -153,6 +157,9 @@
 
 ;; iBuffer configuration
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; Flyspell
+(global-set-key (kbd "C-$") 'flyspell-auto-correct-previous-word)
 
 (setq user-full-name "Alan Third")
 (setq user-mail-address "alan@idiocy.org")
