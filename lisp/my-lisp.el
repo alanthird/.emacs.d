@@ -39,3 +39,19 @@ connection details."
                    nil "putty" connection-string)))
 
 (global-set-key (kbd "C-c p") 'at/start-putty)
+
+(defun at/start-command-prompt ()
+  (interactive)
+  (let ((proc (start-process "cmd" nil "cmd.exe" "/C" "start" "cmd.exe")))
+    (set-process-query-on-exit-flag proc nil)))
+
+(global-set-key (kbd "C-c s") 'at/start-command-prompt)
+
+
+(defun at/start-php-server (root)
+  (interactive "DServer root:")
+  (start-process "php-server" "*PHP Server*"
+                 "php" "-S" "localhost:8080"
+                 "-t" (expand-file-name root)))
+
+(global-set-key (kbd "C-c w") 'at/start-php-server)
