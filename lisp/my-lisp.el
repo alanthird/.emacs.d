@@ -48,10 +48,10 @@ connection details."
 (global-set-key (kbd "C-c s") 'at/start-command-prompt)
 
 
-(defun at/start-php-server (root)
-  (interactive "DServer root:")
+(defun at/start-php-server (root bind-to)
+  (interactive "DServer root:\nMBind to (localhost:8080):")
   (start-process "php-server" "*PHP Server*"
-                 "php" "-S" "localhost:8080"
+                 "php" "-S" (if (string= bind-to "") "localhost:8080" bind-to)
                  "-t" (expand-file-name root)))
 
 (global-set-key (kbd "C-c w") 'at/start-php-server)
