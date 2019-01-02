@@ -33,6 +33,11 @@
 (tool-bar-mode -1)
 (load-theme 'wombat)
 
+;; The cursor in wombat is too dark and is hard to see sometimes.
+(custom-theme-set-faces
+ 'wombat
+ '(cursor ((t (:background "#F29112")))))
+
 ;; Setup each frame when it's created according to how it's displayed.
 (defun my--setup-frame (&rest frame)
   (cond
