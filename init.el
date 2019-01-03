@@ -197,7 +197,7 @@
 ;; System specific stuff!
 (cond ((equal (system-name) "CSS-49268-TL")
        (setq user-mail-address "alan.third@argyll-bute.gov.uk")
-       (setq org-agenda-files '("H:/org"))
+       (setq org-agenda-files '("//abck-fs01/hdrives/thirda/org"))
 
        (setq url-proxy-services
 	     '(("http"     . "localhost:3128")
