@@ -1,9 +1,9 @@
 (setq custom-file "~/.emacs.d/lisp/custom.el")
 
 ;; package.el stuff
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ;;("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")))
 (setq package-enable-at-startup nil)
 (package-initialize)
 
