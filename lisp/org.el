@@ -71,10 +71,29 @@ insert a link to this file."
                                ;; (I believe I'm supposed to use
                                ;; org-babel-do-load-languages, to set this up, but
                                ;; it just doesn't seem to work for me.)
-                               (require 'ob-js)
-                               (require 'ob-dot)
-                               (require 'ob-gnuplot)
-                               (require 'ob-scheme)
+                               ;; (require 'ob-js)
+                               ;; (require 'ob-dot)
+                               ;; (require 'ob-gnuplot)
+                               ;; (require 'ob-scheme)
+                               (org-babel-do-load-languages
+                                'org-babel-load-languages
+                                '((shell . t)
+                                  (js . t)
+                                  (dot . t)
+                                  (gnuplot . t)
+                                  (scheme . t)))
                                
                                (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
-                               (add-to-list 'org-src-lang-modes '("html" . web))))))
+                               (add-to-list 'org-src-lang-modes '("html" . web)))))
+
+  ;; Nabbed from https://emacs.stackexchange.com/questions/28871/how-to-remove-m-from-org-babel-code-block-executing-on-linux-from-windows-os
+  (defadvice org-babel-sh-evaluate (around set-shell activate)
+    "Add header argument :file-coding that sets the buffer-file-coding-system."
+    (let ((file-coding-param (cdr (assoc :file-coding params))))
+      (if file-coding-param
+          (let ((file-coding (intern file-coding-param))
+                (default-file-coding (default-value 'buffer-file-coding-system)))
+            (setq-default buffer-file-coding-system file-coding)
+            ad-do-it
+            (setq-default buffer-file-coding-system default-file-coding))
+        ad-do-it))))
