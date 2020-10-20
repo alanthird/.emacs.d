@@ -7,3 +7,7 @@ lisp/custom.el
 url
 .org-id-locations
 *.elc
+.#tramp
+abbrev_defs
+bookmarks
+eudc-options
