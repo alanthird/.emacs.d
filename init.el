@@ -187,14 +187,18 @@
        (setq ns-right-alternate-modifier (quote none))))
 
 ;; System specific stuff!
-(cond ((equal (system-name) "CSS-49268-TL")
+(cond ((equal (system-name) "CSS-60501-HL")
        (setq user-mail-address "alan.third@argyll-bute.gov.uk")
        (setq org-agenda-files '("//abck-fs01/hdrives/thirda/org"))
 
+       (if (string-equal system-type "windows-nt")
+           (set-face-attribute 'default nil :height 90))
+
+       (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+       (setq gnutls-algorithm-priority "NORMAL:%COMPAT")
        (setq url-proxy-services
 	     '(("http"     . "localhost:3128")
-               ("https"    . "localhost:3128")
-	       ("no_proxy" . "^.*\\.argyll-bute\\.gov\\.uk")))
+               ("https"    . "localhost:3128")))
        (setq doc-view-ghostscript-program "gswin32c"))
       ((string-prefix-p "breton" (system-name))
        (setq org-agenda-files '("~/org")))
