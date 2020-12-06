@@ -66,9 +66,10 @@
 		  (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))
 				    nil t)))
 
-;; Unbind cmd-Q because it's bound to quit on macOS and I keep hitting
-;; it by accident.
+;; Unbind cmd-Q and cmd-W because they quit on macOS and I keep
+;; hitting them by accident.
 (global-unset-key (kbd "s-q"))
+(global-unset-key (kbd "s-w"))
 
 (use-package magit
   :ensure t
