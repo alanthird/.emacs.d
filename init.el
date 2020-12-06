@@ -152,8 +152,7 @@
 
 (add-hook 'post-mode-hook
           (lambda ()
-            (flyspell-mode t)
-            (unichar-mode t)))
+            (flyspell-mode t)))
 
 ;; Wide-margin mode
 (add-hook 'wide-margins-mode-hook 
