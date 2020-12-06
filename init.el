@@ -172,7 +172,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Flyspell
-(global-set-key (kbd "C-$") 'flyspell-auto-correct-previous-word)
+(global-set-key (kbd "C-$") 'flyspell-check-previous-highlighted-word)
 
 (setq user-full-name "Alan Third")
 (setq user-mail-address "alan@idiocy.org")
