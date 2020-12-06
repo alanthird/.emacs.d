@@ -37,6 +37,7 @@
 (custom-theme-set-faces
  'wombat
  '(cursor ((t (:background "#F29112")))))
+(custom-theme-recalc-face 'cursor)
 
 ;; Setup each frame when it's created according to how it's displayed.
 (defun my--setup-frame (&rest frame)
