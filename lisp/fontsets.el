@@ -11,3 +11,9 @@
 (set-fontset-font t 'cjk-misc "Noto Sans CJK KR Regular")
 
 (set-face-attribute 'variable-pitch nil :font "GaramondNo8")
+
+;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿
+(set-fontset-font t 'symbol "Apple Color Emoji")
+(set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
+(set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
+(set-fontset-font t 'symbol "Symbola" nil 'append)
