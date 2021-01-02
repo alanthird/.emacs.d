@@ -152,7 +152,9 @@
 
 (add-hook 'post-mode-hook
           (lambda ()
-            (flyspell-mode t)))
+            (flyspell-mode t)
+            (define-key flyspell-mode-map (kbd "C-c $")
+              'flyspell-check-previous-highlighted-word)))
 
 ;; Wide-margin mode
 (add-hook 'wide-margins-mode-hook 
@@ -170,9 +172,6 @@
 
 ;; iBuffer configuration
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;; Flyspell
-(global-set-key (kbd "C-$") 'flyspell-check-previous-highlighted-word)
 
 (setq user-full-name "Alan Third")
 (setq user-mail-address "alan@idiocy.org")
