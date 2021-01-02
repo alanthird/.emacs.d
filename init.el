@@ -41,16 +41,8 @@
 
 ;; Setup each frame when it's created according to how it's displayed.
 (defun my--setup-frame (&rest frame)
-  (cond
-   ((and (not (string-equal system-type "darwin")) (display-graphic-p))
-    ;; Non-macOS graphical environment
-    (menu-bar-mode -1))
-   ((not (display-graphic-p))
-    ;; Terminal mode
-    (menu-bar-mode -1))
-   (t
-    ;; macOS graphical environment
-    (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend))))
+  (when (not (and (string-equal system-type "darwin") (display-graphic-p)))
+    (set-frame-parameter nil 'menu-bar-lines 0)))
 (add-hook 'after-make-frame-functions 'my--setup-frame t)
 
 ;; We have to run this manually as it doesn't run for the original
