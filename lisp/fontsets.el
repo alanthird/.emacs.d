@@ -4,13 +4,16 @@
 (set-fontset-font t 'unicode "Courier New" nil 'append)
 (set-fontset-font t 'unicode "Symbola" nil 'append)
 
+;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿
 ;; Symbols: → 🤨
 ;; I don't understand why there are two symbols fonts.
-(set-fontset-font t 'symbol "Noto Sans Symbols")
+(set-fontset-font t 'symbol "Apple Color Emoji")
+(set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
+(set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
+(set-fontset-font t 'symbol "Noto Sans Symbols" nil 'append)
 (set-fontset-font t 'symbol "Noto Sans Symbols2" nil 'append)
 (set-fontset-font t 'symbol "Noto Emoji" nil 'append)
 (set-fontset-font t 'symbol "Symbola" nil 'append)
-(set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
 
 ;; Latin
 (set-fontset-font t 'latin "Noto Sans")
@@ -52,9 +55,3 @@
 (set-fontset-font t 'bengali "Noto Sans Bengali")
 
 (set-face-attribute 'variable-pitch nil :font "GaramondNo8")
-
-;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿
-(set-fontset-font t 'symbol "Apple Color Emoji")
-(set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
-(set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
-(set-fontset-font t 'symbol "Symbola" nil 'append)
