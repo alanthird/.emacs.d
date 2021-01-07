@@ -1,1 +1,3 @@
-(define-key dired-mode-map (kbd "'") 'dired-up-directory)
+(use-package dired
+  :bind (:map dired-mode-map
+              ("'" . dired-up-directory)))
