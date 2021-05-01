@@ -22,7 +22,10 @@ http://blog.bookworm.at/2007/03/pretty-print-xml-with-emacs.html"
   (message "Ah, much better!"))
 
 (advice-add 'toggle-frame-maximized
-            :before (lambda () (set-frame-parameter nil 'undecorated t)))
+            :before (lambda ()
+                      (if (eq 'maximized (frame-parameter nil 'fullscreen))
+                          (set-frame-parameter nil 'undecorated nil)
+                        (set-frame-parameter nil 'undecorated t))))
 
 (defun at/start-putty ()
   "Start a PuTTY session.
