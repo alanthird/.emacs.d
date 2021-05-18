@@ -43,7 +43,7 @@
 (defun my--setup-frame (&rest frame)
   (when (not (and (string-equal system-type "darwin") (display-graphic-p)))
     (set-frame-parameter nil 'menu-bar-lines 0)))
-(add-hook 'after-make-frame-functions 'my--setup-frame t)
+(add-hook 'server-after-make-frame-hook 'my--setup-frame t)
 
 ;; We have to run this manually as it doesn't run for the original
 ;; frame.
