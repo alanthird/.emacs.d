@@ -3,7 +3,7 @@
     (header-goto-subject)
     (let ((case-fold-search t)
           (subject (buffer-substring-no-properties (point) (line-end-position))))
-      (string-match "bug#\\([[:digit:]]+\\)" subject)
+      (string-match "bug ?#\\([[:digit:]]+\\)" subject)
       (match-string 1 subject))))
 
 (defun at--insert-debbugs-control ()
@@ -17,6 +17,7 @@
     (at--insert-debbugs-control)
     (post-goto-body)
     (unless (re-search-forward "^thankyou$" nil t)
+      (insert "package emacs\n")
       (insert "thankyou")
       (save-excursion
         (insert "\n\n")))
@@ -29,7 +30,8 @@
                                   nil nil (at--get-bug-number))
                      (read-string (format "Tag (ns): ")
                                   nil nil "ns")))
-  (at--insert-command (format "tags %s + %s" bug tag)))
+  (at--insert-command "user emacs")
+  (at--insert-command (format "usertag %s + %s" bug tag)))
 
 (defun at--insert-merge (bug1 bug2)
   (interactive (list (read-string (format "Bug number (%s): " (at--get-bug-number))
