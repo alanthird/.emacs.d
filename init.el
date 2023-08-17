@@ -29,8 +29,9 @@
 (setq sentence-end-double-space nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(when (display-graphic-p)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1))
 (load-theme 'wombat)
 
 ;; The cursor in wombat is too dark and is hard to see sometimes.
