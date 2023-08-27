@@ -1,32 +1,40 @@
 (when (display-graphic-p)
-  (set-face-attribute 'default nil :font "Droid Sans Mono")
+  (set-face-attribute 'default nil :font "IBM Plex Mono" :weight 'light)
+  (set-face-attribute 'bold nil :font "IBM Plex Mono" :weight 'normal)
   (set-fontset-font t 'unicode "Noto Sans")
   (set-fontset-font t 'unicode "DejaVu Sans" nil 'append)
   (set-fontset-font t 'unicode "Courier New" nil 'append)
   (set-fontset-font t 'unicode "Symbola" nil 'append)
 
-  ;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿
   ;; Symbols: → 🤨
   ;; I don't understand why there are two symbols fonts.
-  (set-fontset-font t 'symbol "Apple Color Emoji")
-  (set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
-  (set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
-  (set-fontset-font t 'symbol "Noto Sans Symbols" nil 'append)
+  (set-fontset-font t 'symbol "Noto Sans Symbols")
   (set-fontset-font t 'symbol "Noto Sans Symbols2" nil 'append)
-  (set-fontset-font t 'symbol "Noto Emoji" nil 'append)
   (set-fontset-font t 'symbol "Symbola" nil 'append)
 
+  ;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿
+  (set-fontset-font t 'emoji "Noto Color Emoji")
+  (set-fontset-font t 'emoji "Apple Color Emoji" nil 'append)
+  (set-fontset-font t 'emoji "Segoe UI Emoji" nil 'append)
+  (set-fontset-font t 'emoji "Noto Emoji" nil 'append)
+  (set-fontset-font t 'emoji "EmojiSymbols" nil 'append)
+
   ;; Latin
-  (set-fontset-font t 'latin "Noto Sans")
+  (set-fontset-font t 'latin "IBM Plex Sans")
+  (set-fontset-font t 'latin "Noto Sans" nil 'append)
 
   ;; Europe
   (set-fontset-font t 'georgian "Noto Sans Georgian")
 
   ;; East Asia: 你好, 早晨, こんにちは, 안녕하세요
-  (set-fontset-font t 'han "Noto Sans CJK KR Regular")
+  (set-fontset-font t 'han "IBM Plex Sans JP")
+  (set-fontset-font t 'han "Noto Sans CJK KR Regular" nil 'append)
+  (set-fontset-font t 'kana "IBM Plex Sans JP" nil 'append)
   (set-fontset-font t 'kana "Noto Sans CJK KR Regular")
-  (set-fontset-font t 'hangul "Noto Sans CJK KR Regular")
-  (set-fontset-font t 'cjk-misc "Noto Sans CJK KR Regular")
+  (set-fontset-font t 'hangul "IBM Plex Sans KR")
+  (set-fontset-font t 'hangul "Noto Sans CJK KR Regular" nil 'append)
+  (set-fontset-font t 'cjk-misc "IBM Plex Sans KR")
+  (set-fontset-font t 'cjk-misc "Noto Sans CJK KR Regular" nil 'append)
 
   ;; South East Asia: ជំរាបសួរ, ສະບາຍດີ, မင်္ဂလာပါ, สวัสดีครับ
   (set-fontset-font t 'khmer "Noto Sans Khmer")
@@ -55,4 +63,4 @@
   (set-fontset-font t 'tibetan "Noto Sans Tibetan")
   (set-fontset-font t 'bengali "Noto Sans Bengali")
 
-  (set-face-attribute 'variable-pitch nil :font "GaramondNo8"))
+  (set-face-attribute 'variable-pitch nil :font "IBM Plex Sans"))
