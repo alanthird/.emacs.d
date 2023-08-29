@@ -29,8 +29,9 @@
 (setq sentence-end-double-space nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(when (display-graphic-p)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1))
 (load-theme 'wombat)
 
 ;; The cursor in wombat is too dark and is hard to see sometimes.
@@ -175,38 +176,4 @@
 (setq user-full-name "Alan Third")
 (setq user-mail-address "alan@idiocy.org")
 
-;;(setenv "DICTIONARY" "en_GB")
-;;(setq ispell-dictionary "en_GB")
-
-;; System type stuff
-(cond ((string-equal system-type "gnu/linux")
-       (setq browse-url-browser-function 'browse-url-generic
-             browse-url-generic-program "xdg-open"))
-      ((string-equal system-type "windows-nt")
-       (setenv "GIT_ASKPASS" "git-gui--askpass")
-       ;; NOTE: you probably also want to run:
-       ;; git config --global credential.helper wincred
-       ;; on a new install.
-       )
-      ((string-equal system-type "darwin")
-       (setq default-directory (concat (getenv "HOME") "/"))
-       ;; use right alt for # and €
-       (setq ns-right-alternate-modifier (quote none))))
-
-;; System specific stuff!
-(cond ((equal (system-name) "CSS-60501-HL")
-       (setq user-mail-address "alan.third@argyll-bute.gov.uk")
-       (setq org-agenda-files '("//abck-fs01/hdrives/thirda/org"))
-
-       (if (string-equal system-type "windows-nt")
-           (set-face-attribute 'default nil :height 90))
-
-       (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-       (setq gnutls-algorithm-priority "NORMAL:%COMPAT")
-       (setq url-proxy-services
-	     '(("http"     . "localhost:3128")
-               ("https"    . "localhost:3128")))
-       (setq doc-view-ghostscript-program "gswin32c"))
-      ((string-prefix-p "breton" (system-name))
-       (setq org-agenda-files '("~/org")))
-      (t (setq org-agenda-files '("/shared/home/alan/org"))))
+(require 'sendmail)
