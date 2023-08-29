@@ -39,6 +39,9 @@
  '(cursor ((t (:background "#F29112")))))
 (custom-theme-recalc-face 'cursor)
 
+(when (not (string-equal system-type "darwin"))
+  (menu-bar-mode -1))
+
 ;; Setup each frame when it's created according to how it's displayed.
 (defun my--setup-frame (&rest frame)
   (when (not (and (string-equal system-type "darwin") (display-graphic-p)))
