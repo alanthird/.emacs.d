@@ -29,7 +29,6 @@
    'electrify-return-if-match))
 
 (add-hook 'emacs-lisp-mode-hook                  #'my-lisp-setup)
-(add-hook 'ielm-mode-hook                        #'my-lisp-setup)
 (add-hook 'lisp-mode-hook                        #'my-lisp-setup)
 (add-hook 'lisp-interaction-mode-hook            #'my-lisp-setup)
 (add-hook 'scheme-mode-hook                      #'my-lisp-setup)
