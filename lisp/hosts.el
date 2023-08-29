@@ -19,7 +19,7 @@
        (setq browse-url-browser-function 'browse-url-generic
              browse-url-generic-program "xdg-open"))
       ((string-equal system-type "windows-nt")
-       (set-face-attribute 'default nil :height 90)
+       (set-face-attribute 'default nil :height 100)
        (setenv "GIT_ASKPASS" "git-gui--askpass")
        ;; NOTE: you probably also want to run:
        ;; git config --global credential.helper wincred
