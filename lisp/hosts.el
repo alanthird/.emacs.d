@@ -1,6 +1,9 @@
-(if (equal (system-name) "faroe")
-    (set-face-attribute 'default nil :height 140)
-  (set-face-attribute 'default nil :height 120))
+(cond ((equal (system-name) "breton")
+       (set-face-attribute 'default nil :height 120)
+       (set-face-attribute 'bold nil :height 120))
+      (t
+       (set-face-attribute 'default nil :height 100)
+       (set-face-attribute 'bold nil :height 100)))
 
 ;; Work
 (when (equal (system-name) "CSS-60501-HL")

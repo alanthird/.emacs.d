@@ -3,11 +3,27 @@
   ;; have to set the specific "light" font. "Bold", however *is*
   ;; honoured, so I have to unset it for the bold faces that I want to
   ;; display using the "regular" font.
-  (set-face-attribute 'default nil :family "IBM Plex Mono light")
-  (set-face-attribute 'bold nil :family "IBM Plex Mono" :weight 'normal)
-  (set-face-attribute 'bold-italic nil :family "IBM Plex Mono" :weight 'normal)
-  (set-face-attribute 'fixed-pitch nil :family "IBM Plex Mono light")
-  (set-face-attribute 'fixed-pitch-serif nil :family "IBM Plex Mono light")
+  (cond ((string-equal system-type "windows-nt")
+         (set-face-attribute 'default nil
+                             :family "IBM Plex Mono light")
+         (set-face-attribute 'bold nil
+                             :family "IBM Plex Mono"
+                             :weight 'normal)
+         (set-face-attribute 'bold-italic nil
+                             :family "IBM Plex Mono"
+                             :weight 'normal)
+         (set-face-attribute 'fixed-pitch nil
+                             :family "IBM Plex Mono light")
+         (set-face-attribute 'fixed-pitch-serif nil
+                             :family "IBM Plex Mono light"))
+        (t
+         (set-face-attribute 'default nil
+                             :family "IBM Plex Mono"
+                             :weight 'light)
+         (set-face-attribute 'bold nil :weight 'normal)
+         (set-face-attribute 'bold-italic nil :weight 'normal)
+         (set-face-attribute 'fixed-pitch nil :weight 'light)
+         (set-face-attribute 'fixed-pitch-serif nil :weight 'light)))
 
   (set-fontset-font t 'unicode "Noto Sans")
   (set-fontset-font t 'unicode "DejaVu Sans" nil 'append)
