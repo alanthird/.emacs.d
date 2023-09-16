@@ -2,8 +2,8 @@
        (set-face-attribute 'default nil :height 120)
        (set-face-attribute 'bold nil :height 120))
       (t
-       (set-face-attribute 'default nil :height 100)
-       (set-face-attribute 'bold nil :height 100)))
+       (set-face-attribute 'default nil :height 90)
+       (set-face-attribute 'bold nil :height 90)))
 
 ;; Work
 (when (equal (system-name) "CSS-60501-HL")
@@ -22,7 +22,6 @@
        (setq browse-url-browser-function 'browse-url-generic
              browse-url-generic-program "xdg-open"))
       ((string-equal system-type "windows-nt")
-       (set-face-attribute 'default nil :height 100)
        (setenv "GIT_ASKPASS" "git-gui--askpass")
        ;; NOTE: you probably also want to run:
        ;; git config --global credential.helper wincred
