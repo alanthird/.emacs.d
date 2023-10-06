@@ -898,11 +898,23 @@ To customize it, type \\[customize] and select [Applications]
   ;; We probably can't handle Supercited messages, though.
   (make-local-variable 'paragraph-start)
   (make-local-variable 'paragraph-separate)
+  (make-local-variable 'adaptive-fill-regexp)
+  (make-local-variable 'adaptive-fill-first-line-regexp)
   (setq paragraph-start
-	(concat "\\([ \t\n\f]+[^ \t\n\f>]\\|[ \t\f>]*$\\|.+:$\\|"
+	(concat "\\([ \t\n\f]+[^ \t\n\f>]\\|"
+                "[ \t\f>]*$\\|"
+                ".+ wrote:$\\|"
 	        post-signature-pattern " *$\\)")
 	paragraph-separate
-	(concat "[ \t\f>]*$\\|.+:$\\|" post-signature-pattern " *$"))
+	(concat "[ \t\f>]*$\\|"
+                ".+ wrote:$\\|"
+                post-signature-pattern " *$")
+        adaptive-fill-regexp
+        (concat "[ \t\f>]*\\|"
+                adaptive-fill-regexp)
+        adaptive-fill-first-line-regexp
+        (concat "[ \t\f>]*\\|"
+                adaptive-fill-first-line-regexp))
 
   ;; XEmacs needs easy-menu-add, Emacs does not care
   (easy-menu-add post-mode-menu)
